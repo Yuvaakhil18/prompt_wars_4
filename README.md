@@ -13,9 +13,9 @@ host of the 2026 Final. Languages: **English, Spanish & French** (the three
 FIFA WC 2026 host-nation languages) — the *entire* response is localized,
 including facility and zone names.
 
-> **🌐 Live demo (Render):** `https://<your-render-url>.onrender.com`
+> **🌐 Live demo (Hugging Face):** `https://huggingface.co/spaces/<your-username>/aura`
 > — deployed from source with the included `Dockerfile` (see
-> [Deployment](#deployment--render)).
+> [Deployment](#deployment--hugging-face)).
 
 ---
 
@@ -111,25 +111,22 @@ high-contrast theme that also enables the visual (screen-reader) path.
 
 Interactive API docs are available at `/docs`.
 
-### Deployment — Render
+### Deployment — Hugging Face
 
-Because the repository includes a `Dockerfile` (and `.dockerignore`), Render will automatically know how to build and host it without any extra configuration.
+Because the repository includes a `Dockerfile` (and `.dockerignore`), the easiest and 100% free way to host this AI assistant is on **Hugging Face Spaces** (no credit card required).
 
-1. Create a free account at [Render.com](https://render.com/).
-2. Create a new **Web Service** and connect your GitHub repository.
-3. Select the **Docker** environment and the **Free** instance type.
-4. Render will automatically build the `Dockerfile` and give you a live URL (e.g., `https://aura-stadium-XXXX.onrender.com`).
+1. Create a free account at [HuggingFace.co](https://huggingface.co/join).
+2. Click **New Space** from your profile.
+3. Name it `aura` and select **Docker** as the Space SDK (choose the "Blank" template).
+4. Upload your files or connect your GitHub repository to the Space.
+5. Hugging Face will automatically build the `Dockerfile` and give you a live URL (e.g., `https://huggingface.co/spaces/your-username/aura`).
 
-Verify your deployment with:
-
-```bash
-curl https://<your-render-url>.onrender.com/health      # -> {"status":"ok"}
-```
+Verify your deployment by opening your Space URL.
 
 Optional — enable live Gemini phrasing (otherwise MockLLM is used):
-In the Render dashboard for your Web Service, go to **Environment** and add the environment variable `GEMINI_API_KEY=YOUR_KEY`.
+In your Hugging Face Space, go to **Settings** -> **Variables and secrets**, and add a new Secret with the name `GEMINI_API_KEY` and your key as the value.
 
-Because the UI is served same-origin from the Render URL, no CORS changes are
+Because the UI is served same-origin from the Hugging Face URL, no CORS changes are
 needed. To build/run the container locally instead:
 
 ```bash
