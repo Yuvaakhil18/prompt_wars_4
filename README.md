@@ -13,7 +13,7 @@ host of the 2026 Final. Languages: **English, Spanish & French** (the three
 FIFA WC 2026 host-nation languages) — the *entire* response is localized,
 including facility and zone names.
 
-> **🌐 Live demo:** `https://<your-app-name>.koyeb.app`
+> **🌐 Live demo:** `https://aurasmartstadium-516iqnky.b4a.run/`
 > — deployed from source with the included `Dockerfile` (see
 > [Deployment](#deployment--free-docker-hosting)).
 
