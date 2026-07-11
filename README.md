@@ -1,4 +1,4 @@
-# Aura ⚽
+# <img src="app/static/sports-stadium.png" alt="Aura Logo" width="44" height="44" align="top"> Aura
 
 **A smart, multilingual, accessible stadium assistant for FIFA World Cup 2026.**
 
