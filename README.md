@@ -13,9 +13,9 @@ host of the 2026 Final. Languages: **English, Spanish & French** (the three
 FIFA WC 2026 host-nation languages) — the *entire* response is localized,
 including facility and zone names.
 
-> **🌐 Live demo (Google Cloud Run):** `https://<your-cloud-run-url>.a.run.app`
+> **🌐 Live demo (Render):** `https://<your-render-url>.onrender.com`
 > — deployed from source with the included `Dockerfile` (see
-> [Deployment](#deployment--google-cloud-run)).
+> [Deployment](#deployment--render)).
 
 ---
 
@@ -111,37 +111,25 @@ high-contrast theme that also enables the visual (screen-reader) path.
 
 Interactive API docs are available at `/docs`.
 
-### Deployment — Google Cloud Run
+### Deployment — Render
 
-The repo ships a container `Dockerfile` (and `.dockerignore`). The image binds
-uvicorn to Cloud Run's `$PORT` (8080) on `0.0.0.0`, and the app runs fully on the
-offline `MockLLM` fallback, so **no secrets are required** to deploy.
+Because the repository includes a `Dockerfile` (and `.dockerignore`), Render will automatically know how to build and host it without any extra configuration.
 
-Deploy straight from source (Cloud Build reads the `Dockerfile`):
+1. Create a free account at [Render.com](https://render.com/).
+2. Create a new **Web Service** and connect your GitHub repository.
+3. Select the **Docker** environment and the **Free** instance type.
+4. Render will automatically build the `Dockerfile` and give you a live URL (e.g., `https://aura-stadium-XXXX.onrender.com`).
 
-```bash
-# In Google Cloud Shell (or any authenticated gcloud), from the repo root:
-gcloud run deploy smart-stadium \
-  --source . \
-  --region us-central1 \
-  --allow-unauthenticated
-```
-
-The command prints the public **Service URL** (e.g.
-`https://smart-stadium-XXXXXXXX-uc.a.run.app`). Verify with:
+Verify your deployment with:
 
 ```bash
-curl https://<service-url>/health      # -> {"status":"ok"}
+curl https://<your-render-url>.onrender.com/health      # -> {"status":"ok"}
 ```
 
 Optional — enable live Gemini phrasing (otherwise MockLLM is used):
+In the Render dashboard for your Web Service, go to **Environment** and add the environment variable `GEMINI_API_KEY=YOUR_KEY`.
 
-```bash
-gcloud run services update smart-stadium --region us-central1 \
-  --set-env-vars GEMINI_API_KEY=YOUR_KEY   # prefer Secret Manager in production
-```
-
-Because the UI is served same-origin from the Cloud Run URL, no CORS changes are
+Because the UI is served same-origin from the Render URL, no CORS changes are
 needed. To build/run the container locally instead:
 
 ```bash
