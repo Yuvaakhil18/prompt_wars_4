@@ -13,9 +13,9 @@ host of the 2026 Final. Languages: **English, Spanish & French** (the three
 FIFA WC 2026 host-nation languages) — the *entire* response is localized,
 including facility and zone names.
 
-> **🌐 Live demo (Hugging Face):** `https://huggingface.co/spaces/<your-username>/aura`
+> **🌐 Live demo:** `https://<your-app-name>.koyeb.app`
 > — deployed from source with the included `Dockerfile` (see
-> [Deployment](#deployment--hugging-face)).
+> [Deployment](#deployment--free-docker-hosting)).
 
 ---
 
@@ -111,23 +111,26 @@ high-contrast theme that also enables the visual (screen-reader) path.
 
 Interactive API docs are available at `/docs`.
 
-### Deployment — Hugging Face
+### Deployment — Free Docker Hosting
 
-Because the repository includes a `Dockerfile` (and `.dockerignore`), the easiest and 100% free way to host this AI assistant is on **Hugging Face Spaces** (no credit card required).
+Because the repository includes a `Dockerfile` (and `.dockerignore`), the easiest way to host this AI assistant for free without a credit card is using **Koyeb** or **Back4App Containers**.
 
-1. Create a free account at [HuggingFace.co](https://huggingface.co/join).
-2. Click **New Space** from your profile.
-3. Name it `aura` and select **Docker** as the Space SDK (choose the "Blank" template).
-4. Upload your files or connect your GitHub repository to the Space.
-5. Hugging Face will automatically build the `Dockerfile` and give you a live URL (e.g., `https://huggingface.co/spaces/your-username/aura`).
+**Option 1: Koyeb**
+1. Create a free account at [Koyeb.com](https://www.koyeb.com/) using GitHub.
+2. Click **Create Web Service**.
+3. Select GitHub and choose this repository.
+4. Select the **Free Eco** instance type and click Deploy.
 
-Verify your deployment by opening your Space URL.
+**Option 2: Back4App Containers**
+1. Create a free account at [Back4App.com](https://www.back4app.com/containers) using GitHub.
+2. Click **New App** -> **Containers**.
+3. Link this GitHub repository.
+4. Back4App will automatically detect the `Dockerfile` and deploy the app.
 
 Optional — enable live Gemini phrasing (otherwise MockLLM is used):
-In your Hugging Face Space, go to **Settings** -> **Variables and secrets**, and add a new Secret with the name `GEMINI_API_KEY` and your key as the value.
+In your hosting provider's dashboard, go to **Environment Variables**, and add a new Secret with the name `GEMINI_API_KEY` and your key as the value.
 
-Because the UI is served same-origin from the Hugging Face URL, no CORS changes are
-needed. To build/run the container locally instead:
+Because the UI is served same-origin from the deployed URL, no CORS changes are needed. To build/run the container locally instead:
 
 ```bash
 docker build -t Aura . && docker run -p 8080:8080 Aura
